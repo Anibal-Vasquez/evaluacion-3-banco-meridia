@@ -18,6 +18,18 @@ npm install
 npm run dev
 ```
 
+## Pruebas unitarias
+
+Ejecuta la suite con:
+
+```bash
+npm test
+```
+
+Las pruebas cubren los modelos de movimientos, la creación de sesiones,
+la validación de transferencias y el adaptador de almacenamiento local. No
+requieren credenciales ni una conexión activa con Firebase.
+
 ## Flujo implementado
 
 - **Crear cuenta** registra el correo y la contraseña en Firebase Auth.

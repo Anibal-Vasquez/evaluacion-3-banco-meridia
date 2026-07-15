@@ -2,6 +2,7 @@ import { doc, getDoc, runTransaction, serverTimestamp, setDoc } from 'firebase/f
 import { db } from '../config/firebase.js';
 import { ACCOUNT_CONFIG, SEED_MOVEMENTS } from '../config/constants.js';
 import { createTransferMovement } from '../models/Movement.js';
+import { validateTransfer } from '../utils/validateTransfer.js';
 class AccountService {
   accountRef(uid) {
     if (!uid) throw new Error('No existe una sesión activa.');
@@ -41,12 +42,10 @@ class AccountService {
     return { saldo: data.balance ?? 0, movimientos: data.movements ?? [] };
   }
   async transfer(uid, { destinatario, cuenta, monto, mensaje }) {
-    const amount = Number(monto);
-    if (!destinatario?.trim() || !cuenta?.trim() || !Number.isInteger(amount)) throw new Error('Completa destinatario, cuenta y un monto entero válido.');
-    if (!/^\d{6,20}$/.test(cuenta.trim())) throw new Error('La cuenta destino debe contener entre 6 y 20 dígitos.');
-    if (amount <= 0) throw new Error('El monto debe ser mayor a $0.');
+    const transferData = validateTransfer({ destinatario, cuenta, monto, mensaje });
+    const amount = transferData.monto;
     const fecha = new Date().toLocaleDateString(ACCOUNT_CONFIG.locale, { day: '2-digit', month: 'short' }).replace('.', '');
-    const movimiento = createTransferMovement({ destinatario: destinatario.trim(), cuenta: cuenta.trim(), monto: amount, mensaje: mensaje?.trim(), fecha });
+    const movimiento = createTransferMovement({ ...transferData, fecha });
     return runTransaction(db, async (transaction) => {
       const ref = this.accountRef(uid);
       const snapshot = await transaction.get(ref);
