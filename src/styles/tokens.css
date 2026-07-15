@@ -1,0 +1,22 @@
+/**
+ * Design tokens: la única fuente de verdad de color/tipografía/radio.
+ * Ningún componente ni otro archivo CSS debe usar valores hardcodeados
+ * de color — siempre a través de estas variables.
+ */
+:root {
+  --ink: #0B1F3A;
+  --ink-soft: #142B4D;
+  --paper: #F7F5F0;
+  --brass: #C9A227;
+  --brass-light: #E6C55C;
+  --slate: #4A5568;
+  --green: #1F7A5C;
+  --white: #FFFFFF;
+
+  --font-display: "Fraunces", serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+
+  --radius: 14px;
+  --max: 1120px;
+}

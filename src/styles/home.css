@@ -1,0 +1,148 @@
+/* ---------- Hero ---------- */
+.hero {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 4.5rem 1.5rem 5rem;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.hero h1 { font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 500; color: var(--ink); }
+.hero h1 em { font-style: italic; color: var(--brass); }
+
+.hero__cta { margin-top: 2rem; display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; }
+
+.hero__panel { background: var(--ink); border-radius: var(--radius); padding: 2.2rem; color: var(--paper); }
+
+.ledger { display: flex; flex-direction: column; gap: 0.4rem; }
+.ledger__label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: rgba(247,245,240,0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.ledger__value { font-family: var(--font-mono); font-size: 2.6rem; font-weight: 500; color: var(--brass-light); }
+.ledger__sub { font-size: 0.82rem; color: rgba(247,245,240,0.55); max-width: 32ch; }
+.ledger__line { margin-top: 1.4rem; width: 100%; height: 70px; }
+.ledger__line polyline {
+  fill: none;
+  stroke: var(--green);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 400;
+  stroke-dashoffset: 0;
+  animation: draw 1.8s ease forwards;
+}
+@keyframes draw { from { stroke-dashoffset: 400; } to { stroke-dashoffset: 0; } }
+
+/* ---------- Strip ---------- */
+.strip {
+  list-style: none;
+  background: var(--ink);
+  color: var(--paper);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.strip__item {
+  padding: 1.8rem 1rem;
+  text-align: center;
+  border-left: 1px solid rgba(247,245,240,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.strip__item:first-child { border-left: none; }
+.strip__item strong { font-family: var(--font-mono); font-size: 1.5rem; color: var(--brass-light); }
+.strip__item span { font-size: 0.8rem; color: rgba(247,245,240,0.65); }
+
+/* ---------- Cards ---------- */
+.cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.card {
+  background: var(--white);
+  border: 1px solid rgba(11,31,58,0.08);
+  border-radius: var(--radius);
+  padding: 2rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(11,31,58,0.08); }
+.card__icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brass);
+  font-size: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+.card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.6rem; }
+.card p { color: var(--slate); font-size: 0.92rem; line-height: 1.5; }
+
+/* ---------- Checklist ---------- */
+.checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+  max-width: 700px;
+}
+.checklist li { position: relative; padding-left: 1.8rem; color: rgba(247,245,240,0.85); font-size: 0.98rem; }
+.checklist li::before { content: "✓"; position: absolute; left: 0; color: var(--brass-light); font-weight: 700; }
+
+/* ---------- Stats ---------- */
+.stats {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, auto);
+  grid-auto-flow: column;
+  gap: 0.4rem 1.5rem;
+  text-align: center;
+}
+.stats dd { order: 1; margin: 0; font-family: var(--font-mono); font-size: 2.4rem; color: var(--ink); }
+.stats dt { order: 2; color: var(--slate); font-size: 0.9rem; }
+
+/* ---------- CTA final ---------- */
+.cta-final {
+  max-width: var(--max);
+  margin: 2rem auto 5rem;
+  padding: 4rem 2rem;
+  background: var(--brass);
+  border-radius: var(--radius);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.8rem;
+}
+.cta-final h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 500; color: var(--ink); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; padding-top: 2.5rem; }
+  .strip { grid-template-columns: repeat(2, 1fr); }
+  .strip__item:nth-child(3) { border-left: none; }
+  .cards { grid-template-columns: 1fr; }
+  .checklist { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: 1fr; gap: 2rem; }
+}

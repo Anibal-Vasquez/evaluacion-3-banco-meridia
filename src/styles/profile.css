@@ -1,0 +1,45 @@
+.profile { max-width: var(--max); margin: 0 auto; padding: 0 1.5rem; }
+
+.profile__hero { padding: 3.5rem 0 2rem; }
+.profile__hero h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 500; margin-top: 0.4rem; }
+
+.balance-card {
+  background: var(--ink);
+  border-radius: var(--radius);
+  padding: 2.5rem;
+  color: var(--paper);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.balance-card__value {
+  font-family: var(--font-mono);
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
+  font-weight: 500;
+  color: var(--brass-light);
+}
+.balance-card__value small { font-size: 1rem; color: rgba(247,245,240,0.6); font-family: var(--font-body); }
+.balance-card__actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+.section--movs { padding-top: 3rem; }
+.section__title--movs { margin-bottom: 2rem; }
+
+.movs { list-style: none; margin: 0; padding: 0; border-top: 1px solid rgba(11,31,58,0.08); }
+.movs__item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid rgba(11,31,58,0.08);
+}
+.movs__desc { font-weight: 500; }
+.movs__fecha { font-family: var(--font-mono); font-size: 0.8rem; color: var(--slate); }
+.movs__monto { font-family: var(--font-mono); font-weight: 500; min-width: 8ch; text-align: right; }
+.movs__monto--in { color: var(--green); }
+.movs__monto--out { color: var(--ink); }
+
+@media (max-width: 600px) {
+  .movs__item { grid-template-columns: 1fr; gap: 0.3rem; }
+  .movs__monto { text-align: left; }
+}
